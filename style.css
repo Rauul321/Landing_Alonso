@@ -58,6 +58,7 @@ html, body {
 
 
 .hero-content {
+    flex-shrink: 0;
 
     padding: 40px;
     border-radius: 12px;
@@ -91,7 +92,7 @@ html, body {
     right: 0;
     font-family: "Anton", sans-serif;
     font-style: normal;
-    font-size: 50px;
+    font-size: 10vw;
     margin-bottom: 30px;
 }
 
@@ -146,17 +147,14 @@ html, body {
         background-image: url('portadaMoviles.jpg');
     }
 
-    .progress-text {
-        font-size: 32px; /* más pequeño en móviles */
-    }
     .progress-wrapper {
         width: 300px; /* se adapta al ancho de la pantalla */
         height: 10px;
     }
 
     .social-btn {
-        width: 70px;
-        height: 70px;
+        width: 5vw;
+        height: 5vw;
     }
 
     .hero-content {
