@@ -23,6 +23,7 @@
     background-position: center;
     filter: brightness(70%);
     z-index: 0;
+    overflow: hidden;
 }
 
 .hero-content {
