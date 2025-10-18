@@ -138,6 +138,18 @@ html, body {
     .hero-bg {
         background-image: url('portadaMoviles.jpg');
     }
+
+    .progress-text {
+        font-size: 32px; /* más pequeño en móviles */
+    }
+    .progress-wrapper {
+        width: 400px; /* se adapta al ancho de la pantalla */
+        height: 10px;
+    }
+
+    .hero-content {
+        padding: 20px; /* menos padding en móviles */
+    }
 }
 
 
