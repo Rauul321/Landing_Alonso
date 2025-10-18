@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero">
+
+    <!-- <img src="portada.jpg" alt="Portada de la cancion" class="hero-img"> -->
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Próximo Lanzamiento</h1>
+            </div>
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progress-bar"></div>
+
+            </div>
+            <span class="progress-text" id="progress-text">0%</span>
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/alonsogonzaleez_/" target="_blank" class="social-btn instagram-btn">
+                    <img src="instagram.svg" alt="Instagram Logo" class="instagram-logo">
+                </a>
+                <a href="https://open.spotify.com/intl-es/artist/5jfSQxRtQ9gH90JcaD5wD6" target="_blank" class="social-btn spotify-btn">
+                    <img src="spotify.svg" alt="Spotify Logo" class="spotify-logo">
+                </a>
+                <a href="https://www.youtube.com/@alonsogonzaleez_" target="_blank" class="social-btn youtube-btn">
+                    <img src="youtube.svg" alt="YouTube Logo" class="youtube-logo">
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        const startDate= new Date('2025-10-10'); // Fecha de inicio
+        const releaseDate= new Date('2025-11-07'); // Fecha de lanzamiento
+
+        function updateProgress() {
+            const now = new Date();
+            if (now < startDate) {
+                progressBar.style.width = '0%';
+                progressText.textContent = '0%';
+            } else if (now > releaseDate) {
+                progressBar.style.width = '100%';
+                progressText.textContent = '100%';
+            } else {
+                const totalDuration = releaseDate - startDate;
+                const elapsed = now - startDate;
+                const progressPercent = Math.floor((elapsed / totalDuration) * 100);
+
+                progressBar.style.width = progressPercent + '%';
+                progressText.textContent = progressPercent + '%';
+            }
+        }
+
+        updateProgress();
+        setInterval(updateProgress, 360000); // Actualiza cada hora
+    </script>
+
+</body>
+</html>
