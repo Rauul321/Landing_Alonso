@@ -137,8 +137,11 @@ html, body {
 }
 
 .footer-text {
-    margin: 0;
-    font-size: 14px;
+    font
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 10px;
     font-family: Anton, sans-serif;
 }
 
