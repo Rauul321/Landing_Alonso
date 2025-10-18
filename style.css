@@ -153,8 +153,13 @@ html, body {
     }
 
     .social-btn {
-        width: 2vw;
-        height: 2vw;
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .social-btn img {
+        width: 4.5vw;
+        height: 4.5vw;
     }
 
     .hero-content {
