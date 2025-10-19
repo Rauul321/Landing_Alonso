@@ -137,7 +137,6 @@ html, body {
 }
 
 .footer-text {
-    font
     margin-right: 0;
     margin-left: 0;
     margin-top: 10px;
@@ -146,8 +145,10 @@ html, body {
 }
 
 @media (max-width: 768px) {
-    .hero-bg {
+    .page-bg {
         background-image: url('portadaMoviles.jpg');
+        max-width:100%;
+
     }
 
     .progress-wrapper {
