@@ -28,13 +28,29 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* 💡 visible en pantalla completa */
-    background-image: url('portada.jpg');
+     /* 💡 visible en pantalla completa */
     background-size: cover; /* o contain, según prefieras */
     background-position: center top;
     background-repeat: no-repeat;
     filter: brightness(20%);
     z-index: 0;
+}
+
+#videoFondo {
+    /* Posicionamiento y tamaño */
+    position: absolute; /* Fija el video en la ventana de visualización */
+    right: 0;
+    bottom: 0;
+    min-width: 100%; /* Asegura que cubra al menos el 100% del ancho */
+    min-height: 100%; /* Asegura que cubra al menos el 100% del alto */
+    width: auto;
+    height: auto;
+    z-index: -100; /* Lo envía al fondo, detrás de todos los demás elementos */
+
+    /* Importante para que el video cubra todo sin distorsión */
+    object-fit: cover;
+    /* Para navegadores más antiguos que no soportan object-fit */
+    background-size: cover;
 }
 
 
@@ -48,6 +64,7 @@ html, body {
 
 
 .hero {
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,11 +75,11 @@ html, body {
 
 
 .hero-content {
+    margin-top: 30px;
     flex-shrink: 0;
-
+    text-align: center;
     padding: 40px;
     border-radius: 12px;
-
 }
 
 
@@ -124,6 +141,7 @@ html, body {
 }
 
 .site-footer {
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -142,6 +160,195 @@ html, body {
     margin-top: 10px;
     font-size: 10px;
     font-family: Anton, sans-serif;
+}
+
+/* Asegura que el contenedor de la forma de onda pueda posicionar a sus hijos */
+.waveform-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    position: relative; /* ¡CLAVE! Para posicionar el pseudo-elemento */
+    overflow: hidden; /* Asegura que el relleno no se salga */
+}
+
+/* Crea la "máscara" o barra de progreso negra */
+.waveform-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%; /* Esta es la propiedad que JavaScript controlará */
+    height: 100%;
+    background-color: black; /* El color de relleno */
+    z-index: 10; /* Debe estar encima de las barras claras/grises */
+}
+
+/* Modifica los estilos del SVG para que las barras se vean grises (no negras) por defecto */
+/* NOTA: Tu SVG actual usa 'fill="#222" opacity="0.1"' para algunas barras.
+ * Queremos que todas las barras que NO están reproducidas se vean grises/claras.
+ * Para este efecto, debes asegurar que las barras NO reproducidas tengan un color CLARO.
+ */
+.waveform rect {
+    fill: rgba(0, 0, 0, 0.4); /* Establece un gris oscuro para todas las barras por defecto */
+}
+
+/* Contenedor Principal: Es la tarjeta redondeada y blanca */
+.audio-player-container {
+    /* Dimensiones y apariencia de la "tarjeta" */
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 400px; /* Ajusta este ancho según necesites */
+    background-color: white;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+}
+
+/* Sección de Controles (Iconos y Onda) */
+.controls-section {
+    display: flex;
+    margin-top:15px;
+    /* 2. Alinear verticalmente todos los ítems al centro */
+    align-items: center;
+
+    /* 3. Espacio entre los elementos (como en el original) */
+    gap: 10px;
+
+    /* 4. Altura mínima para asegurar el centrado si el contenido es pequeño */
+    min-height: 40px;
+}
+
+/* Estilo para los botones generales */
+.control-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #222;
+    position: relative;
+}
+
+/* Icono de Pausa/Reproducción: Replicando el estilo de doble barra */
+.pause-icon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    /* Dibujamos las dos barras de pausa usando pseudo-elementos */
+}
+
+.pause-icon::before,
+.pause-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px; /* Ancho de la barra */
+    height: 18px; /* Alto de la barra */
+    background-color: black;
+    border-radius: 2px;
+}
+
+.pause-icon::before {
+    left: 8px;
+}
+
+.pause-icon::after {
+    right: 8px;
+}
+
+.play-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    /* Truco para dibujar un triángulo CSS */
+    border-style: solid;
+    border-width: 8px 0 8px 12px; /* Dibuja un triángulo de 12px de ancho */
+    border-color: transparent transparent transparent black; /* El color del triángulo es negro */
+
+    /* Centrado: Mueve el triángulo hacia atrás la mitad de su tamaño */
+    transform: translate(-45%, -50%);
+}
+
+/* --- REGLA DE LIMPIEZA --- */
+
+/* Cuando el botón tiene la clase .play-icon, nos aseguramos de que no haya restos
+   de las barras de pausa, especialmente el after. */
+.play-icon::after {
+    content: none;
+}
+
+/* Botón de Velocidad (1x) */
+.speed-button {
+    background-color: #888;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 15px; /* Crea la forma de pastilla */
+    flex-shrink: 0; /* Evita que se encoja */
+}
+
+
+
+/* Contenedor de la Onda */
+.waveform-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    position: relative; /* ¡CLAVE! Para posicionar la máscara (::before) */
+    overflow: hidden;
+
+    /* 🔑 Inicialización de la variable que JavaScript actualizará */
+    --progress-width: 0%;
+}
+
+.waveform-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: black; /* El color de relleno */
+    z-index: -1; /* Debe estar encima de las barras grises del SVG */
+
+    /* 🔑 Usa la variable que JavaScript establece */
+    width: var(--progress-width);
+
+    /* Opcional: añade una transición suave para que el relleno no salte */
+    transition: width 0.5s linear;
+}
+
+.waveform {
+    width: 100%;
+    height: 30px;
+    display: block;
+}
+
+/* Sección de Tiempos */
+.time-section {
+    display: flex;
+    justify-content: space-between; /* Alinea uno a la izquierda y otro a la derecha */
+    margin-top: 5px; /* Mueve el tiempo hacia arriba, debajo de la onda */
+    color: #222;
+    font-size: 12px;
+    padding: 0 3px;
+    font-weight: 500;
+}
+
+.overlay {
+    background-color: black;
 }
 
 @media (max-width: 768px) {
