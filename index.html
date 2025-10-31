@@ -23,15 +23,19 @@
     gtag('config', 'G-VEHSR6EDP6');
 </script>
 <body>
-<div class="page-bg"></div>
+
         <div class="page-content">
             <div class="hero">
+                <!-- hacer que se reproduzca automaticamente -->
+                <video id="video-background" autoplay loop muted playsinline>
+                    <source src="videoBG.mp4" type="video/mp4">
+                </video>
 
             <!-- <img src="portada.jpg" alt="Portada de la cancion" class="hero-img"> -->
                 <!-- <div class="hero-bg"></div> -->
                 <div class="hero-content">
                     <h1 class="progress-text" id="progress-text">0%</h1>
-
+                    <!--
                     <div class="progress-wrapper">
                         <div class="progress-bar" id="progress-bar"></div>
 
@@ -48,22 +52,28 @@
                             <img src="youtube.svg" alt="YouTube Logo" class="youtube-logo">
                         </a>
                     </div>
+                    -->
+                    <div class="audio-player">
+                        <audio id="audio-control" controls>
+                            <source src="audio.m4a" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
                 </div>
 
 
 
             </div>
-
-            <footer class="site-footer">
-                <div class="footer-content">
-                    <p class="footer-text">© 2025 FlowUnique. All rights reserved.</p>
-
-                </div>
-            </footer>
         </div>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 FlowUnique. All rights reserved.</p>
+
+            </div>
+        </footer>
 
     <script>
-        const progressBar = document.getElementById('progress-bar');
+        //const progressBar = document.getElementById('progress-bar');
         const progressText = document.getElementById('progress-text');
 
         const startDate= new Date('2025-10-10'); // Fecha de inicio
@@ -72,17 +82,17 @@
         function updateProgress() {
             const now = new Date();
             if (now < startDate) {
-                progressBar.style.width = '0%';
+                //progressBar.style.width = '0%';
                 progressText.textContent = '0%';
             } else if (now > releaseDate) {
-                progressBar.style.width = '100%';
+                //progressBar.style.width = '100%';
                 progressText.textContent = '100%';
             } else {
                 const totalDuration = releaseDate - startDate;
                 const elapsed = now - startDate;
                 const progressPercent = Math.floor((elapsed / totalDuration) * 100);
 
-                progressBar.style.width = progressPercent + '%';
+                //progressBar.style.width = progressPercent + '%';
                 progressText.textContent = progressPercent + '%';
             }
         }
