@@ -102,5 +102,23 @@
         setInterval(updateProgress, 360000); // Actualiza cada hora
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('video-background');
+
+            // 1. Intentar reproducir el video
+            video.play().catch(error => {
+                // console.log("La reproducción automática fue impedida:", error);
+                // Esto es normal en algunos navegadores.
+            });
+
+            // 2. Volver a intentar reproducir al hacer clic (por si acaso)
+            // Esto cubre escenarios donde el usuario tiene que interactuar
+            document.addEventListener('click', () => {
+                video.play().catch(error => {});
+            }, { once: true });
+        });
+    </script>
+
 </body>
 </html>
