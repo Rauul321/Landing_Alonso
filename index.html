@@ -24,104 +24,46 @@
 </script>
 <body>
 <div class="page-bg"></div>
-    <video autoplay muted loop id="videoFondo">
-        <source src="videoAlonso.mp4" type="video/mp4">
-        Tu navegador no soporta la etiqueta de video.
-    </video>
-
-    <audio id="audioControl">
-        <source src="audioWeb.m4a" type="audio/mp3">
-    </audio>
         <div class="page-content">
             <div class="hero">
 
-                <div>
-                    <div class="audio-player-container">
-                        <div class="controls-section">
-                            <button class="control-button pause-icon" aria-label="Pausar">
-                                <a id="playPauseButton" href="javascript:void(0);">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    </svg>
-                                </a>
-                            </button>
-                            <div class="waveform-container">
-                                <svg viewBox="0 0 300 30" class="waveform" preserveAspectRatio="none">
-                                    <rect x="0" y="10" width="10" height="10" rx="5" fill="#222" opacity="0.1" />
-                                    <rect x="15" y="5" width="10" height="20" rx="5" fill="#222" />
-                                    <rect x="30" y="8" width="10" height="14" rx="5" fill="#222" />
-                                    <rect x="45" y="10" width="10" height="10" rx="5" fill="#222" />
-                                    <rect x="60" y="5" width="10" height="20" rx="5" fill="#222"  />
-                                    <rect x="75" y="10" width="10" height="10" rx="5" fill="#222" />
-                                    <rect x="100" y="5" width="10" height="20" rx="5" fill="#222"  />
-                                    <rect x="115" y="5" width="10" height="20" rx="5" fill="#222" />
-                                    <rect x="90" y="14" width="2" height="2" rx="5" fill="#222" />
-
-                                    <rect x="130" y="5" width="10" height="20" rx="5" fill="#222" />
-                                    <rect x="145" y="3" width="10" height="24" rx="5" fill="#222" />
-                                    <rect x="160" y="7" width="10" height="16" rx="5" fill="#222" />
-                                    <rect x="175" y="1" width="10" height="28" rx="5" fill="#222" />
-
-                                    <rect x="190" y="5" width="10" height="20" rx="5" fill="#222"  />
-                                    <rect x="205" y="1" width="10" height="28" rx="5" fill="#222"  />
-                                    <rect x="220" y="3" width="10" height="24" rx="5" fill="#222"  />
-                                    <rect x="235" y="7" width="10" height="16" rx="5" fill="#222"  />
-                                    <rect x="250" y="10" width="10" height="10" rx="5" fill="#222"  />
-                                </svg>
-                            </div>
-                            <button class="control-button speed-button">1x</button>
-                        </div>
-
-                        <div class="time-section">
-                            <span class="current-time">0:00</span>
-                            <span class="hour">19:39</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-content">
-                    <h1 class="progress-text" id="progress-text">0%</h1>
-                    <!--
-                        <div class="progress-wrapper">
-                            <div class="progress-bar" id="progress-bar"></div>
-
-                        </div>
-
-                            <div class="social-buttons">
-                                <a href="https://www.instagram.com/itsnaviel/" target="_blank" class="social-btn instagram-btn">
-                                    <img src="instagram.svg" alt="Instagram Logo" class="instagram-logo">
-                                </a>
-                                <a href="https://open.spotify.com/intl-es/artist/4HLxOYmmC87fSOGsH6HVwm" target="_blank" class="social-btn spotify-btn">
-                                    <img src="spotify.svg" alt="Spotify Logo" class="spotify-logo">
-                                </a>
-                                <a href="https://www.youtube.com/@LaNdeNavi" target="_blank" class="social-btn youtube-btn">
-                                    <img src="youtube.svg" alt="YouTube Logo" class="youtube-logo">
-                                </a>
-                            </div>
-                            -->
-                </div>
-
             <!-- <img src="portada.jpg" alt="Portada de la cancion" class="hero-img"> -->
                 <!-- <div class="hero-bg"></div> -->
+                <div class="hero-content">
+                    <h1 class="progress-text" id="progress-text">0%</h1>
 
+                    <div class="progress-wrapper">
+                        <div class="progress-bar" id="progress-bar"></div>
+
+                    </div>
+
+                    <div class="social-buttons">
+                        <a href="https://www.instagram.com/itsnaviel/" target="_blank" class="social-btn instagram-btn">
+                            <img src="instagram.svg" alt="Instagram Logo" class="instagram-logo">
+                        </a>
+                        <a href="https://open.spotify.com/intl-es/artist/4HLxOYmmC87fSOGsH6HVwm" target="_blank" class="social-btn spotify-btn">
+                            <img src="spotify.svg" alt="Spotify Logo" class="spotify-logo">
+                        </a>
+                        <a href="https://www.youtube.com/@LaNdeNavi" target="_blank" class="social-btn youtube-btn">
+                            <img src="youtube.svg" alt="YouTube Logo" class="youtube-logo">
+                        </a>
+                    </div>
+                </div>
 
 
 
             </div>
+
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <p class="footer-text">© 2025 FlowUnique. All rights reserved.</p>
+
+                </div>
+            </footer>
         </div>
-        <div class="overlay">
 
-
-        </div>
-
-<footer class="site-footer">
-    <div class="footer-content">
-        <p class="footer-text">© 2025 FlowUnique. All rights reserved.</p>
-
-    </div>
-</footer>
-    <script src="audioControl.js"></script>
     <script>
-        //const progressBar = document.getElementById('progress-bar');
+        const progressBar = document.getElementById('progress-bar');
         const progressText = document.getElementById('progress-text');
 
         const startDate= new Date('2025-10-10'); // Fecha de inicio
@@ -130,17 +72,17 @@
         function updateProgress() {
             const now = new Date();
             if (now < startDate) {
-                //progressBar.style.width = '0%';
+                progressBar.style.width = '0%';
                 progressText.textContent = '0%';
             } else if (now > releaseDate) {
-                //progressBar.style.width = '100%';
+                progressBar.style.width = '100%';
                 progressText.textContent = '100%';
             } else {
                 const totalDuration = releaseDate - startDate;
                 const elapsed = now - startDate;
                 const progressPercent = Math.floor((elapsed / totalDuration) * 100);
 
-                //progressBar.style.width = progressPercent + '%';
+                progressBar.style.width = progressPercent + '%';
                 progressText.textContent = progressPercent + '%';
             }
         }
